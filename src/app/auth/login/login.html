@@ -1,0 +1,9 @@
+<!-- src/app/auth/login/login.html -->
+<div class="card">
+  <h2>LOGIN</h2>
+  <input placeholder="Username" [(ngModel)]="username" />
+  <input placeholder="Password" [(ngModel)]="password" type="password" />
+  <button (click)="submit()">Login</button>
+  <p *ngIf="error" class="error">{{ error }}</p>
+  <p>Don’t have an account? <a routerLink="/register">Register</a></p>
+</div>

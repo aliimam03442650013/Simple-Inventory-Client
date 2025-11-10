@@ -1,0 +1,10 @@
+<!-- src/app/app.html -->
+<nav *ngIf="showNavbar()" class="navbar">
+  <div class="brand">SimpleInventory</div>
+  <ul  class="nav-links">
+    <li><a routerLink="/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" >Dashboard</a></li>
+    <li><a routerLink="/inventory" routerLinkActive="active-link">Inventory</a></li>
+    <li><a routerLink="/login" (click)="logout()">Logout</a></li>
+  </ul >
+</nav>
+<router-outlet></router-outlet>
