@@ -24,8 +24,9 @@ export class RegisterComponent {
   submit() {
     this.auth.register({ username: this.username, email: this.email, password: this.password }).subscribe({
       next: () => {
-        this.success = 'Registered successfully! Redirecting...';
-        setTimeout(() => this.router.navigate(['/login']), 1000);
+        this.success = 'Registered successfully!';
+        this.error = '';
+        setTimeout(() => this.router.navigate(['/login']), 6000);
       },
       error: () => (this.error = 'Registration failed')
     });

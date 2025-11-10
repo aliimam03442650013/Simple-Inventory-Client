@@ -1,11 +1,19 @@
-<!-- src/app/auth/register/register.html -->
-<div class="card">
-  <h2>REGISTER</h2>
-  <input placeholder="Username" [(ngModel)]="username" />
-  <input placeholder="Email" [(ngModel)]="email" />
-  <input placeholder="Password" type="password" [(ngModel)]="password" />
-  <button (click)="submit()">Register</button>
-  <p class="ok" *ngIf="success">{{success}}</p>
-  <p class="error" *ngIf="error">{{error}}</p>
-  <p>Already have an account? <a routerLink="/login">Login</a></p>
+<div class="register-container">
+  <div class="register-card">
+    <h2 class="title">Create Your Account ✨</h2>
+
+    <input type="text" placeholder="Username" [(ngModel)]="username" />
+    <input type="email" placeholder="Email" [(ngModel)]="email" />
+    <input type="password" placeholder="Password" [(ngModel)]="password" />
+
+    <button (click)="submit()" class="btn">Register</button>
+
+    <p class="ok" *ngIf="success">{{ success }}</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <p class="login-text">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
 </div>

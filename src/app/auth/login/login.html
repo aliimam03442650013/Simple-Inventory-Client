@@ -1,9 +1,45 @@
-<!-- src/app/auth/login/login.html -->
-<div class="card">
-  <h2>LOGIN</h2>
-  <input placeholder="Username" [(ngModel)]="username" />
-  <input placeholder="Password" [(ngModel)]="password" type="password" />
-  <button (click)="submit()">Login</button>
-  <p *ngIf="error" class="error">{{ error }}</p>
-  <p>Don’t have an account? <a routerLink="/register">Register</a></p>
+<div class="login-container">
+  <div class="login-card">
+    <h2>Welcome Back 👋</h2>
+
+    <!-- Social Buttons -->
+    <button class="google-btn">
+      <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" />
+      Continue with Google
+    </button>
+
+    <button class="microsoft-btn">
+      <img src="https://www.svgrepo.com/show/475661/microsoft.svg" alt="Microsoft" />
+      Continue with Microsoft
+    </button>
+
+    <div class="divider">or</div>
+
+    <!-- Login Form -->
+    <form (ngSubmit)="submit()">
+      <input
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="username"
+        name="username"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <p *ngIf="error" class="error">{{ error }}</p>
+
+    <p class="signup-text">
+      Don’t have an account?
+      <a routerLink="/register">Sign up</a>
+    </p>
+  </div>
 </div>

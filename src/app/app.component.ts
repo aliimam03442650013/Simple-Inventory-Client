@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet,RouterModule,Router,RouterLinkActive  } from '@angular/router';
+import { RouterOutlet,RouterModule,Router,RouterLinkActive,NavigationEnd   } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,13 +11,23 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   //title = 'SimpleInventory';
-  constructor(private router: Router) {}
-
-  // ✅ Show navbar only when logged in and not on login/register
-  showNavbar(): boolean {
-    const token = localStorage.getItem('jwtToken');
+  showSidebar = false;
+  constructor(private router: Router) {
     const hiddenRoutes = ['/login', '/register'];
-    return !!token && !hiddenRoutes.includes(this.router.url);
+     
+    
+    setTimeout(() => {
+      const currentUrl = this.router.url || '';
+      this.showSidebar = !hiddenRoutes.includes(currentUrl);
+    }, 0);
+
+
+    // 👇 This listens to route changes dynamically
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showSidebar = !hiddenRoutes.includes(event.url);
+      }
+    });
   }
 
   logout() {
