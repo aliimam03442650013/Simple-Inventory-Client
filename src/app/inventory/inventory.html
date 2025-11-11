@@ -1,22 +1,48 @@
-<!-- src/app/inventory/inventory.html -->
-<section class="wrap">
-  <header>
-    <h2>Inventory</h2>
-    <div class="form-row">
-         <input type="text" [(ngModel)]="form.name" placeholder="Name">
-         <input type="text" [(ngModel)]="form.category" placeholder="Category">
-    <input type="number" [(ngModel)]="form.quantity" placeholder="Quantity">
-    <input type="number" [(ngModel)]="form.price" placeholder="Price">
-      <button class="add-btn" (click)="addItem()">Add Item</button>
-    </div>
-  </header>
+<div class="inventory-section">
+  <div class="inventory-card">
+    <!-- Header Section -->
+    <div class="inventory-header">
+      <h2>Inventory</h2>
 
-  <div style="display:flex; justify-content:center;">
-  <table>
-    <thead><tr><th>Name</th><th>Category</th><th>Quantity</th><th>Price</th><th>Actions</th></tr></thead>
- <tbody>
-  <tr *ngFor="let item of items">
-    <ng-container *ngIf="editing?.id !== item.id; else editRow">
+      <div class="inventory-actions">
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search inventory..."
+            [(ngModel)]="searchText"
+            (input)="filterItems()"
+          />
+        </div>
+        <button class="add-item-btn" (click)="goToAddItem()">Add Item</button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>CATEGORY</th>
+            <th>QUANTITY</th>
+            <th>PRICE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+
+       <tbody>
+  <tr *ngFor="let item of paginatedItems">
+    <ng-container *ngIf="editing && editing.id === item.id; else viewRow">
+      <td><input [(ngModel)]="editing.name" /></td>
+      <td><input [(ngModel)]="editing.category" /></td>
+      <td><input type="number" [(ngModel)]="editing.quantity" /></td>
+      <td><input type="number" [(ngModel)]="editing.price" /></td>
+      <td>
+        <button class="save" (click)="save()">Update</button>
+      </td>
+    </ng-container>
+
+    <ng-template #viewRow>
       <td>{{ item.name }}</td>
       <td>{{ item.category }}</td>
       <td>{{ item.quantity }}</td>
@@ -25,17 +51,19 @@
         <button class="edit" (click)="edit(item)">Edit</button>
         <button class="del" (click)="remove(item.id)">Delete</button>
       </td>
-    </ng-container>
-
-    <ng-template #editRow>
-      <td><input [(ngModel)]="editing!.name" /></td>
-      <td><input [(ngModel)]="editing!.category" /></td>
-      <td><input type="number" [(ngModel)]="editing!.quantity" /></td>
-      <td><input type="number" [(ngModel)]="editing!.price" /></td>
-      <td><button class="save" (click)="save()">Update</button></td>
     </ng-template>
   </tr>
 </tbody>
-  </table>
+
+<!-- 🧭 Pagination Controls -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
+      </table>
+    </div>
   </div>
-</section>
+</div>

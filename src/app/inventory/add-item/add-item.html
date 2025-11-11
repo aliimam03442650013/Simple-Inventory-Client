@@ -1,0 +1,70 @@
+<div class="add-item-page">
+  <div class="add-item-card">
+    <h2 class="form-title">
+      <span class="icon">➕</span> Add New Inventory Item
+    </h2>
+
+    <form (ngSubmit)="saveItem()" #itemForm="ngForm" class="form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="item.name"
+          class="form-control"
+          placeholder="Enter item name"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          [(ngModel)]="item.category"
+          class="form-control"
+          placeholder="Enter category"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            [(ngModel)]="item.quantity"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="form-group half">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            [(ngModel)]="item.price"
+            class="form-control"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="btn save-btn">
+          💾 Save Item
+        </button>
+        <button type="button" class="btn cancel-btn" (click)="cancel()">
+          ✖ Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

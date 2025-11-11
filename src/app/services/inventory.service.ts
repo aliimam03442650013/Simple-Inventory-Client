@@ -15,4 +15,6 @@ export class InventoryService {
   add(item: Omit<InventoryItem, 'id'>): Observable<InventoryItem> { return this.http.post<InventoryItem>(this.url, item); }
   update(item: InventoryItem): Observable<void> { return this.http.put<void>(`${this.url}/${item.id}`, item); }
   delete(id: number): Observable<void> { return this.http.delete<void>(`${this.url}/${id}`); }
+    addItem(item: Omit<InventoryItem, 'id'>): Observable<InventoryItem> { return this.http.post<InventoryItem>(this.url, item); }
 }
+

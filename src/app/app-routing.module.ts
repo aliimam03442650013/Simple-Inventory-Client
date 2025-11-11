@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { AddItemComponent } from './inventory/add-item/add-item.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
